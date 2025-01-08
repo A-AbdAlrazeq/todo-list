@@ -24,7 +24,22 @@ function App() {
       </div>
       <ul>
         {tasks.map((task) => (
-          <li key={task.id}>{task.text}</li>
+          <li
+            key={task.id}
+            onClick={() =>
+              setTasks(
+                tasks.map((t) =>
+                  t.id === task.id ? { ...t, completed: !t.completed } : t
+                )
+              )
+            }
+            style={{
+              textDecoration: task.completed ? "line-through" : "none",
+              cursor: "pointer",
+            }}
+          >
+            {task.text}
+          </li>
         ))}
       </ul>
     </div>
